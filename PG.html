@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 60px;
+            background-color: #f9f9f9;
+        }
+        /* Navigation Bar */
+        nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px; /* Adjust padding as needed */
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixes the navbar to the viewport */
+    top: 0; /* Ensures the navbar is at the top */
+    left: 0;
+    width: 100%; /* Makes the navbar span the full width of the page */
+    z-index: 100; /* Ensures the navbar stays above other elements */
+    height: 60px; /* Define the navbar height */
+    line-height: 60px; 
+}
+
+
+  nav .nav-links {
+    display: flex;
+    list-style: none;
+    opacity: 1;
+    animation: slideInNavLinks 1s forwards 0.5s; /* Animation for links */
+  }
+
+  nav .nav-links li {
+    margin: 0 25px;
+  }
+  nav .nav-links li a {
+    color: #000; /* Set text color to dark black */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    
+}
+
+
+  nav .nav-links li a:hover {
+    color: #f26a6a;
+  }
+
+  nav .nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #f26a6a;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  nav .nav-links li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+        .filters {
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .filters select, .filters button {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .filters button {
+            background-color: #00bfa5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .filters button:hover {
+            background-color: #009688;
+        }
+        .pet-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+        .pet-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .pet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .pet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .pet-card h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #4a2c82;
+        }
+        .pet-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .pet-card button {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #ff7043;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .pet-card button:hover {
+            background-color: #e64a19;
+        }
+        .pet-card .price {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #4a2c82;
+            font-weight: bold;
+        }
+        .cart {
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 8px;
+        }
+        .cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cart ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart button {
+            background-color: #00bfa5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .cart button:hover {
+            background-color: #009688;
+        }
+        .payment-section {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .payment-section select, .payment-section button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .payment-section button {
+            background-color: #ff7043;
+            color: white;
+            cursor: pointer;
+        }
+        .payment-section button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <nav>
+        
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="adoption.html">Adoption Process</a></li>
+          <li><a href="#PG.html">Pet Gallery</a></li>
+          <li><a href="add-pet.php">Add pet</a></li>
+          <li><a href="user-pg.php">User pet gallery</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="index.php">Login/Register</a></li>
+        </ul>
+    
+      </nav>
+      
+</div>
+<div class="filters">
+    <select id="type">
+        <option value="any">Type</option>
+        <option value="cat">Cat</option>
+        <option value="dog">Dog</option>
+        <option value="parrot">Parrot</option>
+    </select>
+    <select id="gender">
+        <option value="any">Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <select id="size">
+        <option value="any">Size</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+    </select>
+    <button onclick="filterPets()">Search</button>
+</div>
+
+
+<div class="pet-gallery" id="petGallery">
+    <!-- Pet cards -->
+</div>
+
+<div class="cart" id="cart">
+    <h3>Your Cart</h3>
+    <ul id="cartList">
+        <!-- Cart items will be listed here -->
+    </ul>
+    <button onclick="proceedToPayment()">Proceed to Payment</button>
+</div>
+
+<div class="payment-section" id="paymentSection" style="display: none;">
+    <h3>Payment Details</h3>
+    <select id="paymentMethod">
+        <option value="creditCard">Credit Card</option>
+        <option value="paypal">PayPal</option>
+    </select>
+    <button onclick="processPayment()">Pay Now</button>
+</div>
+
+<script>
+    const pets = [];
+const types = ["cat", "dog", "parrot"];
+const genders = ["Male", "Female"];
+const sizes = ["Small", "Medium", "Large"];
+const prices = [200, 300, 150, 500, 250, 350, 400]; // Example pet prices
+const species = {
+    cat: "Domestic Cat",
+    dog: "Golden Retriever",
+    parrot: "Macaw Parrot"
+};
+const nationalities = {
+    cat: "USA",
+    dog: "Canada",
+    parrot: "Brazil"
+};
+const breeds = {
+    cat: "Persian",
+    dog: "Labrador",
+    parrot: "Exotic"
+};
+let cart = [];
+
+// Generate Sample Pets
+for (let i = 1; i <= 40; i++) {
+    const type = types[i % 3];
+    const gender = genders[i % 2];
+    const size = sizes[i % 3];
+    const price = prices[i % prices.length];
+    const breed = breeds[type];
+    const speciesType = species[type];
+    const nationality = nationalities[type];
+    const name = `${type.charAt(0).toUpperCase() + type.slice(1)} ${i}`;
+    const id = `A12${1000 + i}`;
+    const imgSrc = type === "cat" 
+        ? `images/cat/cat${i % 12 + 1}.jpg` 
+        : type === "dog" 
+        ? `images/dog/dog${i % 10 + 1}.jpg` 
+        : `images/parrot/parrot${i % 10 + 1}.jpg`;
+
+    pets.push({
+        type,
+        gender,
+        size,
+        price,
+        breed,
+        species: speciesType,
+        nationality,
+        name,
+        id,
+        html: `
+            <div class='pet-card'>
+                <img src='${imgSrc}' alt='${name}'>
+                <h3>${name}</h3>
+                <p><strong>Species:</strong> ${speciesType}</p>
+                <p><strong>Breed:</strong> ${breed}</p>
+                <p><strong>Nationality:</strong> ${nationality}</p>
+                <p><strong>Gender:</strong> ${gender} | <strong>Size:</strong> ${size} | <strong>ID:</strong> ${id}</p>
+                <p class='price'><strong>Price:</strong> $${price}</p>
+                <button onclick="addToCart('${id}', '${name}', ${price})">Add to Cart</button>
+            </div>
+        `
+    });
+}
+
+    // Function to Filter Pets
+    function filterPets() {
+        const type = document.getElementById('type').value;
+        const gender = document.getElementById('gender').value;
+        const size = document.getElementById('size').value;
+
+        const petGallery = document.getElementById('petGallery');
+        petGallery.innerHTML = ''; // Clear gallery
+
+        // Filter logic
+        const filteredPets = pets.filter(pet => {
+            const matchesType = type === 'any' || pet.type === type;
+            const matchesGender = gender === 'any' || pet.gender.toLowerCase() === gender.toLowerCase();
+            const matchesSize = size === 'any' || pet.size.toLowerCase() === size.toLowerCase();
+            return matchesType && matchesGender && matchesSize;
+        });
+
+        // Update the gallery
+        if (filteredPets.length > 0) {
+            petGallery.innerHTML = filteredPets.map(pet => pet.html).join('');
+        } else {
+            petGallery.innerHTML = `<p>No pets found matching your criteria.</p>`;
+        }
+    }
+
+    // Function to Add Pet to Cart
+    function addToCart(id, name, price) {
+        cart.push({ id, name, price });
+        updateCart();
+    }
+
+    // Update Cart Display
+    function updateCart() {
+        const cartList = document.getElementById('cartList');
+        cartList.innerHTML = ''; // Clear the list
+
+        if (cart.length > 0) {
+            cart.forEach(item => {
+                cartList.innerHTML += `<li>${item.name} - $${item.price}</li>`;
+            });
+        } else {
+            cartList.innerHTML = `<li>Your cart is empty.</li>`;
+        }
+    }
+
+    // Function to Proceed to Payment
+    function proceedToPayment() {
+        if (cart.length > 0) {
+            document.getElementById('paymentSection').style.display = 'block';
+        } else {
+            alert('Your cart is empty. Please add pets to your cart.');
+        }
+    }
+
+    // Function to Process Payment
+    function processPayment() {
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        alert(`Payment of $${calculateTotal()} has been processed via ${paymentMethod}. Thank you for adopting!`);
+        cart = []; // Clear the cart
+        updateCart(); // Update the cart display
+        document.getElementById('paymentSection').style.display = 'none';
+    }
+
+    // Calculate Total Cart Price
+    function calculateTotal() {
+        return cart.reduce((total, item) => total + item.price, 0);
+    }
+
+    // Initial Load of All Pets
+    document.getElementById('petGallery').innerHTML = pets.map(pet => pet.html).join('');
+</script>
+
+</body>
+</html>

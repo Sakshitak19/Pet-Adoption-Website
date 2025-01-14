@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="app.css" />
+    <title>Adoption Application</title>
+  </head>
+  <body>
+      <div class="form-container">
+        <h1 class="section-title">Adoption Application Form</h1>
+
+        <form action="submit-form.php" method="POST">
+          <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="pet-choice">Pet Choice:</label>
+            <select id="pet-choice" name="pet-choice" required>
+              <option value="" disabled selected>Select Pet</option>
+              <option value="cat">Cat</option>
+              <option value="dog">Dog</option>
+              <option value="bird">Bird</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="payment-option">Payment Option:</label>
+            <select id="payment-option" name="payment-option" required>
+              <option value="" disabled selected>Select Payment Method</option>
+              <option value="credit-card">Credit Card</option>
+              <option value="debit-card">Debit Card</option>
+              <option value="paypal">PayPal</option>
+              <option value="netbanking">Net Banking</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="payment-amount">Adoption Fee (in USD):</label>
+            <input type="number" id="payment-amount" name="payment-amount" min="0" required />
+          </div>
+
+          <div class="form-group">
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" pattern="\d{16}" placeholder="Enter 16-digit card number" required />
+          </div>
+
+          <div class="form-group">
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="month" id="expiry-date" name="expiry-date" required />
+          </div>
+
+          <div class="form-group">
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" pattern="\d{3}" placeholder="Enter 3-digit CVV" required />
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn">Submit Application</button>
+          </div>
+        </form>
+      </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

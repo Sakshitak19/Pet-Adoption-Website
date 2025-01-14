@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#ffdad5, #fff7f9);
+}
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px; /* Adjust padding as needed */
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixes the navbar to the viewport */
+    top: 0; /* Ensures the navbar is at the top */
+    left: 0;
+    width: 100%; /* Makes the navbar span the full width of the page */
+    z-index: 100; /* Ensures the navbar stays above other elements */
+}
+  nav .nav-links {
+    display: flex;
+    list-style: none;
+    opacity: 1;
+    animation: slideInNavLinks 1s forwards 0.5s; /* Animation for links */
+  }
+
+  nav .nav-links li {
+    margin: 0 25px;
+  }
+  nav .nav-links li a {
+    color: #000; /* Set text color to dark black */
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    font-weight: bold;
+    position: relative;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+
+  nav .nav-links li a:hover {
+    color: #f26a6a;
+  }
+
+  nav .nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #f26a6a;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  nav .nav-links li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .logo {
+    position: absolute;
+    left: 50px;
+    color: #e63131;
+    font-weight: bold;
+    animation: fadeInLogo 1s ease-out;
+  }
+.contact-container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.contact-left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.contact-left-title h2{
+    font-weight: 600;
+    color: #a363aa;
+    font-size: 40px;
+    margin-bottom: 5px;
+
+}
+.contact-left-title hr{
+    border: none;
+    width: 120px;
+    height: 5px;
+    background-color: #a363aa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.contact-inputs{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding-left: 25px;
+    font-weight: 500;
+    color: #666;
+    border-radius: 50px;
+}
+.contact-left textarea{
+    height: 140px;
+    padding-top: 15px;
+    border-radius: 20px;
+}
+.contact-inputs:focus{
+    border: 2px solid #ff994f;
+
+}
+.contact-inputs ::placeholder{
+    color: #a9a9a9;
+}
+.contact-left button{
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    font-size: 16px;
+    color: #fff;
+    gap:10px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(270deg,#ff994f, #fa6d86);
+    cursor: pointer;
+}
+.contact-left button img{
+    height: 15px;
+}
+.contact-right img{
+    width: 500px;
+}
+@media (max-width:800px){
+    .contact-inputs{
+        width:80vw;
+    }
+    .contact-right{
+        display:none;
+    }
+} 
